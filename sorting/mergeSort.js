@@ -1,3 +1,14 @@
+//  merge explanation
+// 1. Create an empty array, take a look at the smallest values in each input array
+// 2. while there are still values we haven`t look at...
+//  2.1 if the value in the first array is smaller than the value in the second array,
+//      push the value in the first array into our results and move on to the next value
+//      in the firs array
+//  2.2 if the value in the first array is larger than the value in the second array,
+//      push the value in the second array into our results and move on to the next value
+//      in the second array
+//  2.3 once we exhaust one array, push in all remaining values from the other array
+
 const merge = (arr1, arr2) => {
     const result = [];
     let i = 0;
@@ -26,6 +37,12 @@ const merge = (arr1, arr2) => {
     return result
 }
 
+//  mergeSort explanation
+// 1. Break up the array into halves until you have arrays that are empty
+//    or have one element
+// 2. Once you have smaller sorted arrays, merge those arrays with other
+//    sorted arrays until you are back at the full length of the array
+// 3. Once the array has been merged back together, return the merged (and sorted) array
 
 const mergeSort = (arr) => {
     if (arr.length <= 1) return arr;
