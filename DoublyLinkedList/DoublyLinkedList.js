@@ -122,8 +122,10 @@ class DoublyLinkedList {
         if (index === 0) return !!this.shift();
         if (index === this.length - 1) return !!this.pop();
         let removedNode = this.get(index);
-        removedNode.prev.next = removedNode.next;
-        removedNode.next.next = removedNode.prev;
+        let beforeNode = removedNode.prev;
+        let nextNode = removedNode.next;
+        beforeNode.next = nextNode;
+        nextNode.prev = beforeNode;
         removedNode.next = null;
         removedNode.prev = null;
         this.length--;
@@ -133,7 +135,7 @@ class DoublyLinkedList {
     print() {
         let arr = [];
         let current = this.head;
-        while (current.next) {
+        while (current) {
             arr.push({
                 prev: current.prev && current.prev.value,
                 current: current.value,
@@ -143,6 +145,4 @@ class DoublyLinkedList {
         }
         console.log(arr);
     }
-}
-
-const doublyLinkedList = new DoublyLinkedList();
+};
