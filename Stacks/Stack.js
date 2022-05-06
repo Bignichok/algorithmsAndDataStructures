@@ -44,14 +44,3 @@ class Stack{
         console.log(arr);
     }
 }
-
-const stack = new Stack()
-
-stack.push(1).push(2).push(3).push(4).push(5);
-stack.print();
-stack.pop();
-stack.print();
-stack.pop();
-stack.pop();
-stack.pop();
-stack.print();
