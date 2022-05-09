@@ -63,4 +63,4 @@ class BinarySearchTree {
     }
 }
 
-const binarySearchTree = new BinarySearchTree();
+module.exports =  new BinarySearchTree();
