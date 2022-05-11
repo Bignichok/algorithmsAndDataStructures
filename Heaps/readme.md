@@ -22,3 +22,8 @@
 ### Use cases 
 - Binary Heaps are used to implement Priority Queues, which are very commonly used data structures.
 - used with graph traversal algorithms
+
+### Time complexity
+-Insertion O(log N)
+-Removal O(log N)
+-Search O(n)
