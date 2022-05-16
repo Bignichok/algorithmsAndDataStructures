@@ -1,3 +1,5 @@
+const stack = require('../Stacks/Stack')
+
 class Graph {
     constructor() {
         this.adjacencyList = {}
@@ -38,15 +40,30 @@ class Graph {
         const adjacencyList = this.adjacencyList;
 
         (function dfs(vertex) {
-            if(!vertex) return null;
+            if (!vertex) return null;
             visitedNodes[vertex] = true;
             result.push(vertex);
             adjacencyList[vertex].forEach((neighbor) => {
-                if(!visitedNodes[neighbor]){
+                if (!visitedNodes[neighbor]) {
                     return dfs(neighbor)
                 }
             });
         })(start)
+        return result
+    }
+
+    depthFirstIterative(start) {
+        const result = []
+        const visitedNodes = {}
+        stack.push(start)
+        while (stack.size) {
+            const vertex = stack.pop().value
+            if (!visitedNodes[vertex]) {
+                visitedNodes[vertex] = true;
+                result.push(vertex);
+                this.adjacencyList[vertex].forEach((neighbor) => stack.push(neighbor))
+            }
+        }
         return result
     }
 }
@@ -68,7 +85,7 @@ graph.addEdge('D', 'E')
 graph.addEdge('D', 'F')
 graph.addEdge('E', 'F')
 
-console.log(graph.depthFirstRecursive('A'))
+console.log(graph.depthFirstIterative('A'))
 
 //          A       
 //       /    \     

@@ -44,3 +44,6 @@ class Stack{
         console.log(arr);
     }
 }
+
+
+module.exports = new Stack()
