@@ -1,4 +1,5 @@
-const stack = require('../Stacks/Stack')
+const stack = require('../Stacks/Stack');
+const queue = require('../Queues/Queue')
 
 class Graph {
     constructor() {
@@ -51,7 +52,6 @@ class Graph {
         })(start)
         return result
     }
-
     depthFirstIterative(start) {
         const result = []
         const visitedNodes = {}
@@ -65,6 +65,22 @@ class Graph {
             }
         }
         return result
+    }
+    breadthFirstTraversal(start) {
+        const result = [];
+        const visitedNodes = {};
+        queue.enqueue(start)
+        while(queue.size){
+            const vertex = queue.dequeue()
+            if(!visitedNodes[vertex]){
+                    visitedNodes[vertex] = true;
+                    result.push(vertex);
+                    this.adjacencyList[vertex].forEach((neighbor) => {
+                        queue.enqueue(neighbor)
+                    })
+            }
+        };
+        return result;
     }
 }
 
@@ -85,7 +101,7 @@ graph.addEdge('D', 'E')
 graph.addEdge('D', 'F')
 graph.addEdge('E', 'F')
 
-console.log(graph.depthFirstIterative('A'))
+console.log(graph.breadthFirstTraversal('A'))
 
 //          A       
 //       /    \     
