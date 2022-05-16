@@ -8,41 +8,72 @@ class Graph {
         }
         return this
     }
-    removeVertex(vertex){
-        if(this.adjacencyList[vertex]){
-            this.adjacencyList[vertex].forEach((item)=>{
+    removeVertex(vertex) {
+        if (this.adjacencyList[vertex]) {
+            this.adjacencyList[vertex].forEach((item) => {
                 this.removeEdge(vertex, item)
             })
             delete this.adjacencyList[vertex]
         }
         return this;
     }
-    addEdge(vertex1, vertex2){
-        if(this.adjacencyList[vertex1] && this.adjacencyList[vertex2]){
+    addEdge(vertex1, vertex2) {
+        if (this.adjacencyList[vertex1] && this.adjacencyList[vertex2]) {
             this.adjacencyList[vertex1].push(vertex2)
             this.adjacencyList[vertex2].push(vertex1)
         }
         return this
     }
-    removeEdge(vertex1, vertex2){
-        if(this.adjacencyList[vertex1] && this.adjacencyList[vertex2]){
+    removeEdge(vertex1, vertex2) {
+        if (this.adjacencyList[vertex1] && this.adjacencyList[vertex2]) {
             this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter((item) => item !== vertex2)
             this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter((item) => item !== vertex1)
         }
         return this
     }
+    depthFirstRecursive(start) {
+        //Depth first Graph Traversal with recursive
+        const result = [];
+        const visitedNodes = {};
+        const adjacencyList = this.adjacencyList;
+
+        (function dfs(vertex) {
+            if(!vertex) return null;
+            visitedNodes[vertex] = true;
+            result.push(vertex);
+            adjacencyList[vertex].forEach((neighbor) => {
+                if(!visitedNodes[neighbor]){
+                    return dfs(neighbor)
+                }
+            });
+        })(start)
+        return result
+    }
 }
 
 const graph = new Graph();
 
-graph.addVertex('Tokyo')
-graph.addVertex('New York')
-graph.addVertex('Dallas')
-console.log(graph)
+graph.addVertex('A')
+graph.addVertex('B')
+graph.addVertex('C')
+graph.addVertex('D')
+graph.addVertex('E')
+graph.addVertex('F')
 
-graph.addEdge('Tokyo', 'New York')
-graph.addEdge('Tokyo', 'Dallas')
-console.log(graph)
+graph.addEdge('A', 'B')
+graph.addEdge('A', 'C')
+graph.addEdge('B', 'D')
+graph.addEdge('C', 'E')
+graph.addEdge('D', 'E')
+graph.addEdge('D', 'F')
+graph.addEdge('E', 'F')
 
-graph.removeVertex('Dallas')
-console.log(graph)
+console.log(graph.depthFirstRecursive('A'))
+
+//          A       
+//       /    \     
+//     B       c    
+//     |       |    
+//     D ----- E    
+//      \     /     
+//         F        

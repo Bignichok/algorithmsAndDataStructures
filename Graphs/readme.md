@@ -16,3 +16,14 @@
   - visual hierarchy
   - file system optimizations
   - everywhere
+
+  ### Depth first Graph Traversal with recursive
+  -The function should accept a starting node
+  -Create a list to store the end result, to be returned at the very end
+  -Create a helper function which accepts a vertex
+    1. The helper function should return early if the vertex is empty
+    2. The helper function should place the vertex it accepts into the 
+    visited object and push that vertex into the result array
+    3. Loop over all of the values in the adjacencyList for that vertex
+    4. If any of those values have not been visited, recursively invoke the
+    helper function with that vertex
