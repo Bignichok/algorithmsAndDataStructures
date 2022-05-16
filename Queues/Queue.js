@@ -28,12 +28,16 @@ class Queue {
         return this
     }
     dequeue() {
-        if (!this.size) return null;
-        const shiftedNode = this.first;
+        if(!this.first) return null;
+
+        let temp = this.first;
+        if(this.first === this.last) {
+            this.last = null;
+        }
         this.first = this.first.next;
-        this.size--
-        if (this.size === 1) this.last = null
-        return shiftedNode;
+        this.size--;
+        return temp.value;
     }
 }
 
+module.exports = new Queue();
