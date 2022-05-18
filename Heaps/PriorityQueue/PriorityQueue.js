@@ -55,7 +55,6 @@ class PriorityQueue {
         while (index > 0) {
             let parentIndex = Math.floor((index - 1) / 2);
             let parentPriority = this.values[parentIndex].priority;
-            console.log(elementPriority,parentPriority)
             if (elementPriority >= parentPriority) break;
             this.swap(index, parentIndex)
             index = parentIndex;
@@ -73,7 +72,7 @@ class PriorityQueue {
     }
 }
 
-// const priorityQueue = new PriorityQueue()
+const priorityQueue = new PriorityQueue()
 
 // const nodes = [
 //     ['common cold',4],
@@ -90,3 +89,5 @@ class PriorityQueue {
 // console.log(priorityQueue.dequeue())
 // console.log(priorityQueue.dequeue())
 // console.log(priorityQueue.dequeue())
+
+module.exports = priorityQueue;
